@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  
+  <title>Frontend Mentor | Frontend quiz app</title>
+</head>
+<body>
+  <header>
+    <div class="question-topic-wrapper flex">
+      <span class="choice-title icon flex" data-topic="">
+        <img src="#" alt="" class="choice-icon">
+      </span>
+      <span class="choice-content text"></span>
+    </div>
+  </header>
+  <main>
+    <!-- Quiz menu start -->
+    <section class="menu">
+      <h1 class="text-heading-primary fs-heading-primary fw-normal">Welcome to the <span class="fw-bold">Frontend Quiz!</span></h1>
+
+      <fieldset class="question-wrapper fw-bold fs-text-content flex">
+        <legend>
+          <span class="text-heading-secondary fs-heading-secondary fw-normal italic">Pick a subject to get started.</span>
+        </legend>
+
+        <label for="html" class="choice-wrapper clr-bg-choice flex hover">
+          <input type="radio" id="html" name="menu" value="html">
+          <span class="choice-title flex" data-topic="html">
+            <img src="./assets/images/icon-html.svg" alt="html" class="choice-icon">
+          </span>
+          <span class="choice-content text">HTML</span>
+        </label>
+
+        <label for="css" class="choice-wrapper clr-bg-choice flex hover">
+          <input type="radio" id="css" name="menu" value="css">
+          <span class="choice-title flex" data-topic="css">
+            <img src="./assets/images/icon-css.svg" alt="css" class="choice-icon">
+          </span>
+          <span class="choice-content text">CSS</span>
+        </label>
+
+        <label for="js" class="choice-wrapper clr-bg-choice flex hover">
+          <input type="radio" id="js" name="menu" value="javascript">
+          <span class="choice-title flex" data-topic="js">
+            <img src="./assets/images/icon-js.svg" alt="javascript" class="choice-icon">
+          </span>
+          <span class="choice-content text">JavaScript</span>
+        </label>
+
+        <label for="accessibility" class="choice-wrapper clr-bg-choice flex hover">
+          <input type="radio" id="accessibility" name="menu" value="accessibility">
+          <span class="choice-title flex" data-topic="accessibility">
+            <img src="./assets/images/icon-accessibility.svg" alt="accessibility" class="choice-icon">
+          </span>
+          <span class="choice-content text">Accessibility</span>
+        </label>
+      </fieldset>
+    </section>
+    <!-- Quiz menu end -->
+
+     <!-- Quiz question start -->
+    <section class="questions">
+      <form action="" name="quiz" class="quiz-form fw-bold fs-text-content flex">
+        <fieldset class="question-wrapper flex">
+          <legend>
+            <span class="text-heading-secondary fs-heading-secondary fw-normal italic">Question <span>1</span> of <span data-total>10</span></span>
+            <span class="text fs-text-title fw-bold" data-question>What your name?</span>
+          </legend>
+  
+          <label for="choice1" class="choice-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="choice1" name="choices">
+            <span class="choice-title clr-light-grey text-grey-navy flex">A</span>
+            <span class="choice-content text">HTML</span>
+          </label>
+  
+          <label for="choice2" class="choice-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="choice2" name="choices">
+            <span class="choice-title clr-light-grey text-grey-navy flex">B</span>
+            <span class="choice-content text">CSS</span>
+          </label>
+  
+          <label for="choice3" class="choice-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="choice3" name="choices">
+            <span class="choice-title clr-light-grey text-grey-navy flex">C</span>
+            <span class="choice-content text">JavaScript</span>
+          </label>
+  
+          <label for="choice4" class="choice-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="choice4" name="choices">
+            <span class="choice-title clr-light-grey text-grey-navy flex">D</span>
+            <span class="choice-content text">Accessibility</span>
+          </label>
+        </fieldset>
+
+        <button type="submit" class="submit-btn text-white clr-purple">Submit answer</button>
+      </form>
+    </section>
+  </main>
+  
+
+  <!-- Quiz question end -->
+
+  <!-- Quiz completed start -->
+
+  Quiz completed
+  You scored...
+
+  <!-- score --> out of 10
+
+  <!-- Quiz completed end -->
+
+</body>
+</html>
