@@ -15,108 +15,128 @@
 </head>
 <body>
   <header>
-    <div class="question-topic-wrapper flex">
-      <span class="choice-title icon flex" data-topic="">
-        <img src="#" alt="" class="choice-icon">
+    <div class="header-icon flex">
+      <span class="box flex" data-topic>
+        <img src="./assets/images/icon-css.svg" alt="" class="icon">
       </span>
-      <span class="choice-content text"></span>
+      <span class="header-topic text">css</span>
     </div>
   </header>
   <main>
-    <!-- Quiz menu start -->
-    <section class="menu">
-      <h1 class="text-heading-primary fs-heading-primary fw-normal">Welcome to the <span class="fw-bold">Frontend Quiz!</span></h1>
+    <!-- Quiz menu -->
+    <section class="menu grid col-2">
+      <div class="menu-title">
+        <h1 class="text-heading-primary fs-heading-primary fw-italic">Welcome to the <span class="block-box fw-bold">Frontend Quiz!</span></h1>
+        <p class="text-heading-secondary fs-heading-secondary fw-italic italic">Pick a subject to get started.</p>
+      </div>
 
-      <fieldset class="question-wrapper fw-bold fs-text-content flex">
-        <legend>
-          <span class="text-heading-secondary fs-heading-secondary fw-normal italic">Pick a subject to get started.</span>
-        </legend>
+      <fieldset class="topics-choice-wrapper">
+        <legend class="visually-hidden">Pick a subject to get started.</legend>
 
-        <label for="html" class="choice-wrapper clr-bg-choice flex hover">
-          <input type="radio" id="html" name="menu" value="html">
-          <span class="choice-title flex" data-topic="html">
-            <img src="./assets/images/icon-html.svg" alt="html" class="choice-icon">
-          </span>
-          <span class="choice-content text">HTML</span>
-        </label>
-
-        <label for="css" class="choice-wrapper clr-bg-choice flex hover">
-          <input type="radio" id="css" name="menu" value="css">
-          <span class="choice-title flex" data-topic="css">
-            <img src="./assets/images/icon-css.svg" alt="css" class="choice-icon">
-          </span>
-          <span class="choice-content text">CSS</span>
-        </label>
-
-        <label for="js" class="choice-wrapper clr-bg-choice flex hover">
-          <input type="radio" id="js" name="menu" value="javascript">
-          <span class="choice-title flex" data-topic="js">
-            <img src="./assets/images/icon-js.svg" alt="javascript" class="choice-icon">
-          </span>
-          <span class="choice-content text">JavaScript</span>
-        </label>
-
-        <label for="accessibility" class="choice-wrapper clr-bg-choice flex hover">
-          <input type="radio" id="accessibility" name="menu" value="accessibility">
-          <span class="choice-title flex" data-topic="accessibility">
-            <img src="./assets/images/icon-accessibility.svg" alt="accessibility" class="choice-icon">
-          </span>
-          <span class="choice-content text">Accessibility</span>
-        </label>
+        <div class="radio-group fw-bold fs-text-content grid">
+          <label for="html" class="radio-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="html" name="menu" value="html">
+            <span class="box flex" data-topic="html">
+              <img src="./assets/images/icon-html.svg" alt="html" class="icon">
+            </span>
+            <span class="radio-content text">HTML</span>
+          </label>
+  
+          <label for="css" class="radio-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="css" name="menu" value="css">
+            <span class="box flex" data-topic="css">
+              <img src="./assets/images/icon-css.svg" alt="css" class="icon">
+            </span>
+            <span class="radio-content text">CSS</span>
+          </label>
+  
+          <label for="js" class="radio-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="js" name="menu" value="javascript">
+            <span class="box flex" data-topic="javascript">
+              <img src="./assets/images/icon-js.svg" alt="javascript" class="icon">
+            </span>
+            <span class="radio-content text">JavaScript</span>
+          </label>
+  
+          <label for="accessibility" class="radio-wrapper clr-bg-choice flex hover">
+            <input type="radio" id="accessibility" name="menu" value="accessibility">
+            <span class="box flex" data-topic="accessibility">
+              <img src="./assets/images/icon-accessibility.svg" alt="accessibility" class="icon">
+            </span>
+            <span class="radio-content text">Accessibility</span>
+          </label>
+        </div>
       </fieldset>
     </section>
-    <!-- Quiz menu end -->
 
-     <!-- Quiz question start -->
+     <!-- Quiz question -->
     <section class="questions">
-      <form action="" name="quiz" class="quiz-form fw-bold fs-text-content flex">
-        <fieldset class="question-wrapper flex">
-          <legend>
-            <span class="text-heading-secondary fs-heading-secondary fw-normal italic">Question <span>1</span> of <span data-total>10</span></span>
-            <span class="text fs-text-title fw-bold" data-question>What your name?</span>
-          </legend>
-  
-          <label for="choice1" class="choice-wrapper clr-bg-choice flex hover">
-            <input type="radio" id="choice1" name="choices">
-            <span class="choice-title clr-light-grey text-grey-navy flex">A</span>
-            <span class="choice-content text">HTML</span>
-          </label>
-  
-          <label for="choice2" class="choice-wrapper clr-bg-choice flex hover">
-            <input type="radio" id="choice2" name="choices">
-            <span class="choice-title clr-light-grey text-grey-navy flex">B</span>
-            <span class="choice-content text">CSS</span>
-          </label>
-  
-          <label for="choice3" class="choice-wrapper clr-bg-choice flex hover">
-            <input type="radio" id="choice3" name="choices">
-            <span class="choice-title clr-light-grey text-grey-navy flex">C</span>
-            <span class="choice-content text">JavaScript</span>
-          </label>
-  
-          <label for="choice4" class="choice-wrapper clr-bg-choice flex hover">
-            <input type="radio" id="choice4" name="choices">
-            <span class="choice-title clr-light-grey text-grey-navy flex">D</span>
-            <span class="choice-content text">Accessibility</span>
-          </label>
+      <form action="" name="quiz" class="quiz-questions-form fw-bold fs-text-content grid col-2">
+        <fieldset class="questions-wrapper grid col-2">
+          <div>
+            <legend>
+              <span class="text-heading-secondary fs-heading-secondary fw-italic italic">Question <span data-current-question>...</span> of <span>10</span></span>
+              <span class="text fs-text-title fw-bold block-box" data-question>...</span>
+            </legend>
+          </div>
+
+          <div class="radio-group grid">
+            <label for="choice1" class="radio-wrapper clr-bg-choice flex hover">
+              <input type="radio" id="choice1" name="choices" data-choice="0">
+              <span class="box clr-light-grey text-grey-navy flex">A</span>
+              <span class="radio-content text">...</span>
+            </label>
+    
+            <label for="choice2" class="radio-wrapper clr-bg-choice flex hover">
+              <input type="radio" id="choice2" name="choices" data-choice="1">
+              <span class="box clr-light-grey text-grey-navy flex">B</span>
+              <span class="radio-content text">...</span>
+            </label>
+    
+            <label for="choice3" class="radio-wrapper clr-bg-choice flex hover">
+              <input type="radio" id="choice3" name="choices" data-choice="2">
+              <span class="box clr-light-grey text-grey-navy flex">C</span>
+              <span class="radio-content text">...</span>
+            </label>
+    
+            <label for="choice4" class="radio-wrapper clr-bg-choice flex hover">
+              <input type="radio" id="choice4" name="choices" data-choice="3">
+              <span class="box clr-light-grey text-grey-navy flex">D</span>
+              <span class="radio-content text">...</span>
+            </label>
+          </div>
         </fieldset>
 
-        <button type="submit" class="submit-btn text-white clr-purple">Submit answer</button>
+        <div class="btns">
+          <button type="submit" class="btn text-white clr-purple">Submit answer</button>
+          <div class="error flex">
+            <span><img src="./assets/images/icon-error.svg" alt="error"></span>
+            <span class="text-red fw-normal">Please select an answer</span>
+          </div>
+          <input type="reset" id="next-btn" value="Next Question" class="next-btn btn text-white clr-purple hidden">
+        </div>
       </form>
     </section>
+
+    <!-- Quiz completed -->
+    <section class="quiz-complete-wrapper grid col-2">
+      <h1 class="text-heading-primary fs-heading-primary fw-italic">Quiz completed <span class="fw-bold block-box">You scored...</span></h1>
+
+      <div class="result-card clr-bg-choice flex">
+        <div class="result-header flex">
+          <span class="box icon flex" data-topic>
+            <img src="#" alt="" class="icon">
+          </span>
+          <span class="result-topic text">...</span>
+        </div>
+        <p>
+          <span class="text fs-score fw-bold" data-result>...</span>
+          <span class="fw-normal text-heading-secondary fs-text-content block-box">out of 10</span>
+        </p>
+      </div>
+
+      <button class="replay-btn btn text-white clr-purple fw-bold">Play Again</button>
+    </section>
   </main>
-  
-
-  <!-- Quiz question end -->
-
-  <!-- Quiz completed start -->
-
-  Quiz completed
-  You scored...
-
-  <!-- score --> out of 10
-
-  <!-- Quiz completed end -->
-
 </body>
 </html>
