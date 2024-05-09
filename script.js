@@ -1,56 +1,162 @@
-const topicWrapper = document.querySelector(".question-topic-wrapper");
-const icon = topicWrapper.querySelector(".choice-icon");
-const topicTitle = topicWrapper.querySelector(".choice-content")
+const header = document.querySelector(".header-icon");
+const headerIcon = header.querySelector(".icon");
+const headerTopic = header.querySelector(".header-topic");
 
-const menuOpts = document.querySelectorAll(".menu [type=radio]");
-let quizzes = [];
-let questions = [];
-let topic = {};
+const menu = document.querySelector(".menu");
+const topics = menu.querySelectorAll("[type=radio]");
 
-const dataPromise = fetch('/data.json');
-dataPromise.then((request)=>{
-  return request.json();
-}).then ((data) => {
-  return quizzes = data.quizzes;
-})
+const questionsWrapper = document.querySelector(".questions");
+const questionIndex = questionsWrapper.querySelector("[data-index]");
+const questionDetail = questionsWrapper.querySelector("[data-question]");
+const choicesDetail = questionsWrapper.querySelectorAll(".radio-content");
+const error = questionsWrapper.querySelector(".error");
 
-function getTopic(topic) {
-  return quizzes.find(quiz => quiz.title.toLowerCase() === topic);
+const quizForm = document.querySelector(".quiz-questions-form");
+const buttons = quizForm.querySelectorAll(".btn")
+
+const resultSummary = document.querySelector(".quiz-complete-wrapper");
+const resultIcon = resultSummary.querySelector(".icon");
+const resultTopic = resultSummary.querySelector(".result-topic");
+const score = resultSummary.querySelector("[data-score]");
+const replayBtn = resultSummary.querySelector(".replay-btn");
+
+let quizz = {
+  title: "",
+  icon: "",
+  questions: [],
+  correctIndex: 0,
+  numberCorrect: 0,
+};
+
+let count = 0;
+
+function addHidden(element) {
+  element.setAttribute("hidden", null);
 }
 
-menuOpts.forEach(menuOpt => {
-  menuOpt.addEventListener("change", (e) => {
-    document.querySelector(".menu").classList.add("hidden");
+function removeHidden(element) {
+  element.removeAttribute("hidden");
+}
 
-    topic = getTopic(e.target.value);
-    icon.setAttribute("src", topic.icon);
-    icon.parentElement.setAttribute("data-topic",`${topic.title.toLowerCase()}`);
-    topicTitle.textContent = `${topic.title}`
+function toggleBtn(button) {
+  button.toggleAttribute("hidden");  // show/hide submit/next question btn
+}
 
-    questions = topic.questions.shift();
-    console.log(questions);
+function resetStyle(attribute) {
+  const attributeCheck = questionsWrapper.querySelector(`[${attribute}]`);
+  (attributeCheck) ? attributeCheck.removeAttribute(`${attribute}`): null
+}
 
-    questionContent.textContent = `${questions.question}`
-    questions.options.forEach((option, index) => {
-      answers[index].textContent = `${option}`;
-    })
+async function fetchData(topic) {
+  const response = await fetch('/data.json');
+  const data = await response.json();
+  const quizTopic = data.quizzes.find(quiz => quiz.title.toLowerCase() === topic);
+  quizz.title = quizTopic.title;
+  quizz.icon = quizTopic.icon;
+  quizz.questions = quizTopic.questions;
+  return quizTopic;
+}
+
+function loadIcon(wrapper, wrapperIcon, wrapperContent) {
+  (wrapper) ?  wrapper.removeAttribute("hidden") : null;
+  wrapperIcon.setAttribute("src", `${quizz.icon}`);
+  wrapperIcon.setAttribute("alt", `${quizz.title}`);
+  wrapperIcon.parentElement.setAttribute("data-topic", `${quizz.title.toLocaleLowerCase()}`); // for styling
+  wrapperContent.textContent = `${quizz.title}`;
+}
+
+function resetIcon(wrapper, wrapperIcon, wrapperContent) {
+  (wrapper) ?  wrapper.setAttribute("hidden", "") : null;
+  wrapperIcon.setAttribute("src", `#`);
+  wrapperIcon.setAttribute("alt", "");
+  wrapperIcon.parentElement.setAttribute("data-topic", ""); // styling
+  wrapperContent.textContent = "";
+}
+
+function loadQuestions() {
+  const currentQuestion = quizz.questions[count]
+  questionDetail.textContent = `${currentQuestion.question}`;
+  choicesDetail.forEach((choiceDetail, index) => {
+    choiceDetail.textContent = `${currentQuestion.options[index]}` // retrieve choices detail
+  });
+  quizz.correctIndex = currentQuestion.options.indexOf(currentQuestion.answer);
+  count += 1;
+  questionIndex.textContent = `${count}`;
+}
+
+function checkAnswer(userAnswer, correctIndex) {
+  if (parseInt(userAnswer.dataset.choice) === correctIndex) {
+    userAnswer.setAttribute("data-check", "true");
+    quizz.numberCorrect += 1;
+  } else {
+    questionsWrapper.querySelector(`[data-choice="${correctIndex}"]`).setAttribute("data-correct", "true");
+    userAnswer.setAttribute("data-check", "false");
+  }
+}
+
+function displayResult() {
+  addHidden(questionsWrapper);
+  removeHidden(resultSummary);
+  loadIcon(null, resultIcon, resultTopic);
+
+  score.textContent = quizz.numberCorrect;
+}
+
+topics.forEach((topic) => {
+  topic.addEventListener("change", (e) => {
+    addHidden(menu);
+    removeHidden(questionsWrapper);
+    fetchData(e.target.value)
+      .then(() => {
+        loadIcon(header, headerIcon, headerTopic);
+        loadQuestions();
+      })
+      .catch(error => console.error('Error fetching data:', error));
   })
 })
-
-const questionWapper = document.querySelector(".questions");
-const answers = questionWapper.querySelectorAll(".choice-content");
-const questionContent = questionWapper.querySelector("[data-question]");
-const quizForm = questionWapper.querySelector(".quiz-form");
-const btn = questionWapper.querySelector("[type=submit]")
 
 quizForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log("hi");
-  questions = topic.questions.shift();
-  console.log(questions);
+  const userAnswer = questionsWrapper.querySelector("[name=choices]:checked"); // get chosen topic
 
-  questionContent.textContent = `${questions.question}`
-  questions.options.forEach((option, index) => {
-    answers[index].textContent = `${option}`;
-  })
+  if (!userAnswer) {
+    removeHidden(error);
+  } else {
+    addHidden(error);
+    checkAnswer(userAnswer, quizz.correctIndex); 
+    buttons.forEach(toggleBtn);
+  }
 })
+
+quizForm.addEventListener("reset", (e) => {
+  if(count === 10) {
+    displayResult();
+  } else {
+    loadQuestions();
+  }
+  ["data-correct", "data-check"].forEach(resetStyle);
+  buttons.forEach(toggleBtn);
+});
+
+replayBtn.addEventListener("click", () => {
+  menu.querySelector("[name=menu]:checked").checked = false; //reset topic
+  removeHidden(menu);
+  [header, resultSummary].forEach(addHidden);
+
+  // resetIcon(header, headerIcon, headerTopic); // I dont do this because header is inaccessible by both screen reader and user already
+
+   quizz = {
+    title: "",
+    icon: "",
+    questions: [],
+    correctIndex: 0,
+    numberCorrect: 0,
+  };
+  count = 0;
+})
+
+
+
+
+
+
