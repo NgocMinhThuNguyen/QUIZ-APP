@@ -15,11 +15,11 @@
 </head>
 <body>
   <header>
-    <div class="header-icon flex">
-      <span class="box flex" data-topic>
-        <img src="./assets/images/icon-css.svg" alt="" class="icon">
+    <div class="header-icon flex" hidden>
+      <span class="header-box box flex" data-topic>
+        <img src="#" alt="" class="icon">
       </span>
-      <span class="header-topic text">css</span>
+      <span class="header-topic text fw-bold fs-text-content"></span>
     </div>
   </header>
   <main>
@@ -34,7 +34,7 @@
         <legend class="visually-hidden">Pick a subject to get started.</legend>
 
         <div class="radio-group fw-bold fs-text-content grid">
-          <label for="html" class="radio-wrapper clr-bg-choice flex hover">
+          <label for="html" class="radio-wrapper clr-bg-choice grid hover">
             <input type="radio" id="html" name="menu" value="html">
             <span class="box flex" data-topic="html">
               <img src="./assets/images/icon-html.svg" alt="html" class="icon">
@@ -42,7 +42,7 @@
             <span class="radio-content text">HTML</span>
           </label>
   
-          <label for="css" class="radio-wrapper clr-bg-choice flex hover">
+          <label for="css" class="radio-wrapper clr-bg-choice grid hover">
             <input type="radio" id="css" name="menu" value="css">
             <span class="box flex" data-topic="css">
               <img src="./assets/images/icon-css.svg" alt="css" class="icon">
@@ -50,7 +50,7 @@
             <span class="radio-content text">CSS</span>
           </label>
   
-          <label for="js" class="radio-wrapper clr-bg-choice flex hover">
+          <label for="js" class="radio-wrapper clr-bg-choice grid hover">
             <input type="radio" id="js" name="menu" value="javascript">
             <span class="box flex" data-topic="javascript">
               <img src="./assets/images/icon-js.svg" alt="javascript" class="icon">
@@ -58,7 +58,7 @@
             <span class="radio-content text">JavaScript</span>
           </label>
   
-          <label for="accessibility" class="radio-wrapper clr-bg-choice flex hover">
+          <label for="accessibility" class="radio-wrapper clr-bg-choice grid hover">
             <input type="radio" id="accessibility" name="menu" value="accessibility">
             <span class="box flex" data-topic="accessibility">
               <img src="./assets/images/icon-accessibility.svg" alt="accessibility" class="icon">
@@ -70,36 +70,36 @@
     </section>
 
      <!-- Quiz question -->
-    <section class="questions">
+    <section class="questions" hidden>
       <form action="" name="quiz" class="quiz-questions-form fw-bold fs-text-content grid col-2">
         <fieldset class="questions-wrapper grid col-2">
           <div>
             <legend>
-              <span class="text-heading-secondary fs-heading-secondary fw-italic italic">Question <span data-current-question>...</span> of <span>10</span></span>
+              <span class="text-heading-secondary fs-heading-secondary fw-italic italic">Question <span data-index>...</span> of <span>10</span></span>
               <span class="text fs-text-title fw-bold block-box" data-question>...</span>
             </legend>
           </div>
 
           <div class="radio-group grid">
-            <label for="choice1" class="radio-wrapper clr-bg-choice flex hover">
+            <label for="choice1" class="radio-wrapper clr-bg-choice grid hover">
               <input type="radio" id="choice1" name="choices" data-choice="0">
               <span class="box clr-light-grey text-grey-navy flex">A</span>
               <span class="radio-content text">...</span>
             </label>
     
-            <label for="choice2" class="radio-wrapper clr-bg-choice flex hover">
+            <label for="choice2" class="radio-wrapper clr-bg-choice grid hover">
               <input type="radio" id="choice2" name="choices" data-choice="1">
               <span class="box clr-light-grey text-grey-navy flex">B</span>
               <span class="radio-content text">...</span>
             </label>
     
-            <label for="choice3" class="radio-wrapper clr-bg-choice flex hover">
+            <label for="choice3" class="radio-wrapper clr-bg-choice grid hover">
               <input type="radio" id="choice3" name="choices" data-choice="2">
               <span class="box clr-light-grey text-grey-navy flex">C</span>
               <span class="radio-content text">...</span>
             </label>
     
-            <label for="choice4" class="radio-wrapper clr-bg-choice flex hover">
+            <label for="choice4" class="radio-wrapper clr-bg-choice grid hover">
               <input type="radio" id="choice4" name="choices" data-choice="3">
               <span class="box clr-light-grey text-grey-navy flex">D</span>
               <span class="radio-content text">...</span>
@@ -109,28 +109,28 @@
 
         <div class="btns">
           <button type="submit" class="btn text-white clr-purple">Submit answer</button>
-          <div class="error flex">
+          <div class="error flex" hidden>
             <span><img src="./assets/images/icon-error.svg" alt="error"></span>
             <span class="text-red fw-normal">Please select an answer</span>
           </div>
-          <input type="reset" id="next-btn" value="Next Question" class="next-btn btn text-white clr-purple hidden">
+          <input type="reset" id="next-btn" value="Next Question" class="next-btn btn text-white clr-purple hidden" hidden>
         </div>
       </form>
     </section>
 
     <!-- Quiz completed -->
-    <section class="quiz-complete-wrapper grid col-2">
+    <section class="quiz-complete-wrapper grid col-2" hidden>
       <h1 class="text-heading-primary fs-heading-primary fw-italic">Quiz completed <span class="fw-bold block-box">You scored...</span></h1>
 
       <div class="result-card clr-bg-choice flex">
         <div class="result-header flex">
-          <span class="box icon flex" data-topic>
+          <span class="header-box box  flex" data-topic>
             <img src="#" alt="" class="icon">
           </span>
           <span class="result-topic text">...</span>
         </div>
-        <p>
-          <span class="text fs-score fw-bold" data-result>...</span>
+        <p class="grid">
+          <span class="text fs-score fw-bold" data-score>...</span>
           <span class="fw-normal text-heading-secondary fs-text-content block-box">out of 10</span>
         </p>
       </div>
