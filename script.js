@@ -143,7 +143,7 @@ replayBtn.addEventListener("click", () => {
   removeHidden(menu);
   [header, resultSummary].forEach(addHidden);
 
-  // resetIcon(header, headerIcon, headerTopic); // I dont do this because header is inaccessible by both screen reader and user already
+  // resetIcon(header, headerIcon, headerTopic); // I dont do this because header is inaccessible by both screen reader and normal user already
 
    quizz = {
     title: "",
@@ -157,41 +157,58 @@ replayBtn.addEventListener("click", () => {
 
 
 // check for saved 'darkMode' in localStorage
-let darkMode = localStorage.getItem('darkMode'); 
+let darkMode = localStorage.getItem("darkMode"); 
 
-const darkModeToggle = document.querySelector('.toggle-switch');
+const toggleWrapper = document.querySelector(".toggle-wrapper")
+const darkModeToggle = toggleWrapper.querySelector('.toggle-switch');
+const sunIcon = toggleWrapper.querySelector(".sun");
+const moonIcon = toggleWrapper.querySelector(".moon");
 
 const enableDarkMode = () => {
-  // 1. Add the class to the body
-  document.body.classList.add('darkmode');
-  // 2. Update darkMode in localStorage
+  document.body.setAttribute("darkmode", "");
+  sunIcon.setAttribute("src", "assets/images/icon-sun-light.svg");
+  moonIcon.setAttribute("src", "assets/images/icon-moon-light.svg");
+  darkModeToggle.setAttribute("aria-checked", "false");
+
   localStorage.setItem('darkMode', 'enabled');
 }
 
 const disableDarkMode = () => {
-  // 1. Remove the class from the body
-  document.body.classList.remove('darkmode');
-  // 2. Update darkMode in localStorage 
+  document.body.removeAttribute("darkMode");
+  sunIcon.setAttribute("src", "assets/images/icon-sun-dark.svg");
+  moonIcon.setAttribute("src", "assets/images/icon-moon-dark.svg");
+  darkModeToggle.setAttribute("aria-checked", "true");
+  
   localStorage.setItem('darkMode', null);
 }
  
 // If the user already visited and enabled darkMode
 // start things off with it on
-if (darkMode === 'enabled') {
-  enableDarkMode();
-}
+// if (darkMode === 'enabled') {
+//   enableDarkMode();
+// }
 
 // When someone clicks the button
-darkModeToggle.addEventListener('click', () => {
-  // get their darkMode setting
-  darkMode = localStorage.getItem('darkMode'); 
-  console.log(darkMode);
+// darkModeToggle.addEventListener('click', () => {
+//   // get their darkMode setting
+//   darkMode = localStorage.getItem('darkMode'); 
+//   console.log(darkMode);
   
-  // if it not current enabled, enable it
-  if (darkMode !== 'enabled') {
+//   // if it not current enabled, enable it
+//   if (darkMode !== 'enabled') {
+//     enableDarkMode();
+//   // if it has been enabled, turn it off  
+//   } else {  
+//     disableDarkMode(); 
+//   }
+// });
+
+function setThemePreference() {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     enableDarkMode();
-  // if it has been enabled, turn it off  
-  } else {  
-    disableDarkMode(); 
+    return;
   }
-});
+  enableLightMode();
+}
+
+document.onload = setThemePreference();
