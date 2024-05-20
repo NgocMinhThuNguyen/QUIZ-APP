@@ -1,3 +1,4 @@
+/* Quiz */
 const header = document.querySelector(".header-icon");
 const headerIcon = header.querySelector(".icon");
 const headerTopic = header.querySelector(".header-topic");
@@ -155,6 +156,7 @@ replayBtn.addEventListener("click", () => {
   count = 0;
 })
 
+/* Theme */
 
 // check for saved 'darkMode' in localStorage
 let darkMode = localStorage.getItem("darkMode"); 
@@ -181,34 +183,27 @@ const disableDarkMode = () => {
   
   localStorage.setItem('darkMode', null);
 }
- 
-// If the user already visited and enabled darkMode
-// start things off with it on
-// if (darkMode === 'enabled') {
-//   enableDarkMode();
-// }
-
-// When someone clicks the button
-// darkModeToggle.addEventListener('click', () => {
-//   // get their darkMode setting
-//   darkMode = localStorage.getItem('darkMode'); 
-//   console.log(darkMode);
-  
-//   // if it not current enabled, enable it
-//   if (darkMode !== 'enabled') {
-//     enableDarkMode();
-//   // if it has been enabled, turn it off  
-//   } else {  
-//     disableDarkMode(); 
-//   }
-// });
 
 function setThemePreference() {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  // If the user already visited and enabled darkMode
+  // start things off with it on
+  if (darkMode === 'enabled') {
     enableDarkMode();
-    return;
+  } else {
+    disableDarkMode();
   }
-  enableLightMode();
 }
 
 document.onload = setThemePreference();
+
+darkModeToggle.addEventListener('click', () => {
+  // get darkMode setting
+  darkMode = localStorage.getItem('darkMode'); 
+  console.log(darkMode);
+  
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  } else {  
+    disableDarkMode(); 
+  }
+});
